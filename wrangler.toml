@@ -1,6 +1,6 @@
 name = "substracker"
 main = "src/index.js"
-compatibility_date = "2024-01-01"
+compatibility_date = "2024-09-23"
 compatibility_flags = ["nodejs_compat"]
 
 [env.production]
@@ -13,6 +13,13 @@ name = "subscription-manager-staging"
 [[kv_namespaces]]
 binding = "SUBSCRIPTIONS_KV"
 id = "6ebb80128f024647b746e56979ec4cbb"
+
+# 静态资源：托管 public/ 目录下的 JS/CSS/HTML 给浏览器
+# 使用方式：浏览器访问 /js/lib/api-client.js 等同于 public/js/lib/api-client.js
+# 不命中静态资源的请求由 Worker fetch handler 处理（默认行为）
+[assets]
+directory = "./public"
+binding = "ASSETS"
 
 # 定时任务配置 - 每小时检查一次（UTC）
 [triggers]
